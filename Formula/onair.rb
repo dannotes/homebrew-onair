@@ -3,24 +3,24 @@
 class Onair < Formula
   desc "Watch Microsoft Teams and turn a Philips WiZ smart bulb red while on a call"
   homepage "https://github.com/dannotes/onair"
-  version "0.1.4"
+  version "0.1.5"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.4/onair-aarch64-apple-darwin.tar.gz"
-      sha256 "f84268925444d261c48e47304003daa8d1523ba452187adfe28f56236f56f504"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.5/onair-aarch64-apple-darwin.tar.gz"
+      sha256 "664862c4336a7783a46516b0cebf372469e33ecc6b9252a0ebb1d6553cbf69fd"
     end
     on_intel do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.4/onair-x86_64-apple-darwin.tar.gz"
-      sha256 "1cfe802c088a3e1e4b4bbe7cd0d0e4b2f3f72cb0bbed17175a256d4b116dde8f"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.5/onair-x86_64-apple-darwin.tar.gz"
+      sha256 "e2d9eafc6682f478687489819fd88061b1ae1771a21d5cc8417990d689de0e49"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.4/onair-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "56afd0b7f3a11792c27e331abb1ad72cb7b88eb2fe38a35116498d25a52f632d"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.5/onair-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "090c4a35aa52876ac6b2488114451207b348d22b92b9d680021699c351ce43a2"
     end
   end
 
