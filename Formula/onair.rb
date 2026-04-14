@@ -3,24 +3,24 @@
 class Onair < Formula
   desc "Watch Microsoft Teams and turn a Philips WiZ smart bulb red while on a call"
   homepage "https://github.com/dannotes/onair"
-  version "0.1.1"
+  version "0.1.2"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.1/onair-aarch64-apple-darwin.tar.gz"
-      sha256 "f94d6bd53f0823f9a8c4fd33780ef5361b6720bc11aaa22293764ee98239911b"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.2/onair-aarch64-apple-darwin.tar.gz"
+      sha256 "6947d81783efe276633852860444eacfae57512221cf1bdee424c1a79a44b43d"
     end
     on_intel do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.1/onair-x86_64-apple-darwin.tar.gz"
-      sha256 "c91729826afd18a9a1326b8f99deb05f93f9a1c75195a06dac74457351501863"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.2/onair-x86_64-apple-darwin.tar.gz"
+      sha256 "e3dff377a8a7d8fee7112dd63944dbea5930d6da03a467a3892981993b8b944b"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.1/onair-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "e10721b8f26d5b88eb021ea501208bfec5593d1c6fb97e4039f697669982cd22"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.2/onair-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "e3706f34fd6bdf5f923d1e5cf9eff59281eb2c7f670bebd853d34f340e8744b4"
     end
   end
 
@@ -31,11 +31,16 @@ class Onair < Formula
 
   def caveats
     <<~CAVEAT
-      Onair runs as a foreground daemon and serves a dashboard at:
-          http://localhost:9876
+      Run onair to launch the dashboard:
+          onair
 
-      To run it on login, see the autostart templates at:
-          https://github.com/dannotes/onair/tree/main/dist/autostart
+      The dashboard at http://localhost:9876 will open in your browser
+      automatically the first time. Configure your bulb there, then
+      toggle "Run on Login" in Settings → Advanced if you want it to
+      start on every login.
+
+      Config and call history live at:
+          ~/Library/Application Support/Onair/onair.db
     CAVEAT
   end
 
