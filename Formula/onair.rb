@@ -3,30 +3,43 @@
 class Onair < Formula
   desc "Watch Microsoft Teams and turn a Philips WiZ smart bulb red while on a call"
   homepage "https://github.com/dannotes/onair"
-  version "0.1.6"
+  version "0.1.7"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.6/onair-aarch64-apple-darwin.tar.gz"
-      sha256 "7364de09399d889c3a2b4e29ff9bda996a9839e7cd5549808b10afdde03f8e86"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.7/onair-aarch64-apple-darwin.tar.gz"
+      sha256 "03e1c1e7ed8a46b87befb9aa69020f364d03b6f3e048e6ec2735c49ed0f44cbc"
     end
     on_intel do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.6/onair-x86_64-apple-darwin.tar.gz"
-      sha256 "56ce23cc1ac3a27e835ae11cc9ad4b347dfdee5c602d3190abf5f8c68b5977d8"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.7/onair-x86_64-apple-darwin.tar.gz"
+      sha256 "188e4bb2afe69ce99fcf755478954ac21fb799e03eb31c6632bb37395357c387"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/dannotes/onair/releases/download/v0.1.6/onair-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "6a503cb9dbdaf7b7428b90e3a35b8729e8723ac9e0a6f1c607b2321b095e84e2"
+      url "https://github.com/dannotes/onair/releases/download/v0.1.7/onair-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "9d2ebfcc9e0c07d9cd21c0227d59e538752dc5add53c9eb6238c2633acbd991b"
     end
   end
 
   def install
     bin.install "onair"
     doc.install "README.md", "LICENSE"
+  end
+
+  def post_install
+    # If the user enabled "Run on Login", the daemon is running under
+    # launchd with KeepAlive=true and has the old binary mmap'd. brew
+    # has just repointed the symlink at the new Cellar version, but the
+    # live process keeps serving stale code. Bounce it via launchctl
+    # kickstart -k: SIGTERM the old process, let KeepAlive respawn it
+    # from the plist, which now resolves to the new binary. Silent
+    # no-op when autostart isn't installed.
+    return unless OS.mac?
+    uid = Process.uid
+    quiet_system "/bin/launchctl", "kickstart", "-k", "gui/#{uid}/com.dannotes.onair"
   end
 
   def caveats
